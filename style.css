@@ -1,0 +1,33 @@
+*{
+    font-family: 'Asap', sans-serif;
+}
+body{
+    background-color: lightblue;
+    text-align: center;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+header{
+    background-color: rgb(179, 179, 179);
+    padding: 5px;
+}
+.scoreboard{
+    margin: 10px;
+    display: block;;
+    border-radius: 5px;
+}
+
+.playerSelection{
+    margin:auto;
+    padding: 0px 2px;
+}
+button{
+    margin: 0 auto;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid black;
+    background-color: rgb(236, 237, 164);
+}

@@ -1,87 +1,74 @@
+var r = document.getElementById('rock');
+var p = document.getElementById('paper');
+var s = document.getElementById('scissors');
+var pscore = document.getElementById('playerscore');
+var cscore = document.getElementById('computerscore');
+var cRound = document.createElement("P");
+var cStatus = document.createElement("P");
+var computerscore = 0;
+var playerscore = 0;
+main();
 
-function computerPlay()
-{
-    var choice = Math.floor((Math.random() * 3 ) + 1);
-    switch(choice)
-    {
-    case 1:
-        choice = 'Rock';
-        break;
-    case 2:
-        choice = 'Paper';
-        break;
-    case 3:
-        choice = 'Scissors';
-        break;
-    }
-    return choice;
+function getComputerChoice(){
+    const choice=['rock', 'paper', 'scissors'];
+    return choice[Math.floor(Math.random()*3)];
 }
 
-function playerPlay(choice)
-{
-    switch(choice)
-    {
-    case 1:
-        choice = 'Rock';
-        break;
-    case 2:
-        choice = 'Paper';
-        break;
-    case 3:
-        choice = 'Scissors';
-        break;
-    }
-    return choice;
-}
-
-function playRound(playerSelection, ComputerSelection)
-{
-    var result ='';
-    switch(playerSelection)
-    {
-        case 'Paper':
-            if(ComputerSelection === 'Rock') result = "You win!";
-                else if(ComputerSelection === 'Scissors') result ="You lose!";
-                    else result = 'It is a Draw!';
-            break;
-        case 'Rock':
-            if(ComputerSelection === 'Scissors') result ="You win!";
-                else if(ComputerSelection === 'Paper') result = "You lose!";
-                    else result ="It is a draw!";
-            break;
-        case 'Scissors':
-            if(ComputerSelection === 'Paper') result ="You win!";
-                else if(ComputerSelection === 'Rock') result ="You lose!";
-                    else result = "It is a draw!";
-    }
-    return result;
-}
-
-function game(){
-    var playerScore = 0, computerScore = 0;
-    for(let i = 1; i <=5; i ++)
-    {
-        let playerSelection = prompt("Rock, Paper or Scissors?");
-        let ComputerSelection = computerPlay();
-        let result = playRound(playerSelection, ComputerSelection);
-        switch(result)
+function game(userChoice){
+    const computerChoice = getComputerChoice();
+    cStatus.innerText = userChoice + " vs " + computerChoice;
+    document.body.appendChild(cStatus);
+    switch(userChoice){
+        case 'rock':
         {
-            case 'You win!':
-                playerScore ++;
-                break;
-            case 'You lose!':
-                computerScore ++;
-                break;
-            case 'It is a draw!':
-                playerScore ++;
-                computerScore++;
+            if(computerChoice == 'paper') cRound.innerText = "Computer wins";
+                else if(computerChoice == 'scissors') cRound.innerText = "Player wins";
+                    else cRound.innerText = "Draw."
+            document.body.appendChild(cRound);
             break;
         }
-        console.log(playerScore, '  ',  computerScore);
-        console.log('\n');
+        case 'paper':
+        {
+            if(computerChoice == 'scissors') cRound.innerText = "Computer wins";
+                else if(computerChoice == 'rock') cRound.innerText = "Player wins";
+                    else cRound.innerText = "Draw."
+            document.body.appendChild(cRound);
+            break;
+        }
+        case 'scissors':
+        {
+            if(computerChoice == 'rock') cRound.innerText = "Computer wins";
+                else if(computerChoice == 'paper') cRound.innerText = "Player wins";
+                    else cRound.innerText = "Draw."
+            document.body.appendChild(cRound);
+            break;
+        }
     }
-    console.log('\n');
-    if(computerScore > playerScore) console.log('You lost');
-        else if (playerScore < computerScore) console.log('You won');
-            else console.log('It is a draw');
+    var result = cRound.innerHTML;
+    if(result === 'Computer wins') computerscore ++;
+        else if(result === 'Player wins') playerscore ++;
+    pscore.innerHTML = playerscore;
+    cscore.innerHTML = computerscore;
+
+}
+
+
+function main(){
+    var playerScore = 0;
+    var computerScore = 0;
+    r.addEventListener(
+        "click",function(){
+            game('rock')
+        }
+    );
+    p.addEventListener(
+        "click",function(){
+            game('paper')
+        }
+    );
+    s.addEventListener(
+        "click",function(){
+            game('scissors')
+        }
+    );
 }
