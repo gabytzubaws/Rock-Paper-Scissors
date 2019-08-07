@@ -1,1 +1,1 @@
-Created a console 'Rock, Paper, Scissors' game in an empty html file, guided by The Odin Project <3"
+Added the ugliest style possible and also now you can play the game using buttons on the page rather than only playing it in console!
